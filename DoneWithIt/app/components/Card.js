@@ -9,7 +9,7 @@ function Card(props) {
     <View style={styles.card}>
       <Image style={styles.image} source={props.image} />
       <AppText style={styles.title}> {props.title} </AppText>
-      <AppText style={styles.subtitle}> {props.subtitle} </AppText>
+      <AppText style={styles.subTitle}> {props.subTitle} </AppText>
     </View>
   );
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
 
-  subtitle: {
+  subTitle: {
     color: colors.secondary,
     fontWeight: "bold",
   },

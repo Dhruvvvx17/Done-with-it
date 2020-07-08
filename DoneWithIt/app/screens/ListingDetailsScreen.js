@@ -20,9 +20,9 @@ function ListingDetailsScreen(props) {
         {/* User who posted the product, a generic ListItem View */}
         <View style={styles.userContainer}>
           <ListItem
-            image={require("../assets/User.jpg")}
             title="Dhruv Vohra"
             subTitle="5 Listings"
+            image={require("../assets/User.jpg")}
           />
         </View>
       </View>
@@ -33,7 +33,7 @@ function ListingDetailsScreen(props) {
 
 const styles = StyleSheet.create({
   detailsContainer: {
-    padding: 20,
+    padding: 10,
   },
 
   image: {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   userContainer: {
-    marginVertical: 10,
+    marginVertical: 5,
   },
 });
 

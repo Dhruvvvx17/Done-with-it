@@ -1,8 +1,8 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import AppButton from "../components/AppButton";
 
+import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
 function WelcomeScreen(props) {
