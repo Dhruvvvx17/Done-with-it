@@ -16,6 +16,7 @@ import Screen from "./Screen";
 import PickerItem from "./PickerItem";
 
 function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
+  // state variable to keep track of the modal visibility state
   const [modalVisisble, setModalVisible] = useState(false);
 
   return (
@@ -32,9 +33,12 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
             />
           )}
           {/* The picker name set as categories or the first category from the list */}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
+
           {/* A downward facing arrow */}
           <MaterialCommunityIcons
             name="chevron-down"
@@ -79,6 +83,11 @@ const styles = StyleSheet.create({
 
   icon: {
     marginRight: 10,
+  },
+
+  placeholder: {
+    color: defaultStyles.colors.medium,
+    flex: 1,
   },
 
   text: {
