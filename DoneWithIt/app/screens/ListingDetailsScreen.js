@@ -6,16 +6,19 @@ import AppText from "../components/AppText";
 import colors from "../config/colors";
 import ListItem from "../components/lists/ListItem";
 
-function ListingDetailsScreen(props) {
+// using the {route} prop as this screen is registered with a navigator
+function ListingDetailsScreen({ route }) {
+  const listing = route.params;
+
   return (
     <View>
       {/* Product Image */}
-      <Image style={styles.image} source={require("../assets/jacket.jpg")} />
+      <Image style={styles.image} source={listing.image} />
 
       {/* Product Info - title & subtitle */}
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Red jacket for sale</AppText>
-        <AppText style={styles.price}>$100</AppText>
+        <AppText style={styles.title}>{listing.title}</AppText>
+        <AppText style={styles.price}>${listing.price}</AppText>
 
         {/* User who posted the product, a generic ListItem View */}
         <View style={styles.userContainer}>
