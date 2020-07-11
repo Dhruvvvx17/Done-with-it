@@ -9,14 +9,16 @@ import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 const initialMessages = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
+    title: "Hey! Is this item still available?",
+    description:
+      "Was looking for a guitar in the same price range that you have offered. Wanted to know if the item is still available and what is the lowest you would go on it.",
     image: require("../assets/User.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "Can you offer some discount?",
+    description:
+      "I am willing to pay 5000. If it is possible please let me know.",
     image: require("../assets/mosh.jpg"),
   },
 ];

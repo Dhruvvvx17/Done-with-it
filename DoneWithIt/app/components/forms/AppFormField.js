@@ -5,7 +5,7 @@ import { useFormikContext } from "formik";
 import AppTextInput from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormField({ name, ...otherProps }) {
+function AppFormField({ name, width, ...otherProps }) {
   // get setFieldTOuched, handleChange, errors and touched objects/functions from formikContext()
   // the context will refer to the formik context of the consumer component
   const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
@@ -15,6 +15,7 @@ function AppFormField({ name, ...otherProps }) {
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
+        width={width}
         {...otherProps}
       />
       {/* error message */}

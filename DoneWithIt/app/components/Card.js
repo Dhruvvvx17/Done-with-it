@@ -8,8 +8,12 @@ function Card(props) {
   return (
     <View style={styles.card}>
       <Image style={styles.image} source={props.image} />
-      <AppText style={styles.title}> {props.title} </AppText>
-      <AppText style={styles.subTitle}> {props.subTitle} </AppText>
+      <AppText style={styles.title} numberOfLines={1}>
+        {props.title}
+      </AppText>
+      <AppText style={styles.subTitle} numberOfLines={2}>
+        {props.subTitle}
+      </AppText>
     </View>
   );
 }

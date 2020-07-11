@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 function Screen(props) {
   return (
     <SafeAreaView style={[styles.screen, props.style]}>
-      <View style={props.screen}>{props.children}</View>
+      <View style={(styles.view, props.screen)}>{props.children}</View>
       <StatusBar hidden />
     </SafeAreaView>
   );
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingTop: Constants.statusBarHeight,
+  },
+  view: {
+    flex: 1,
   },
 });
 
