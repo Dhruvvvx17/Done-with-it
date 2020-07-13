@@ -4,8 +4,9 @@ import { StatusBar } from "expo-status-bar";
 
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={2}
@@ -20,8 +21,16 @@ function WelcomeScreen(props) {
 
       {/* Buttons conatiner */}
       <View style={styles.buttonsContainer}>
-        <AppButton title="login" color={colors.primary} />
-        <AppButton title="register" color={colors.secondary} />
+        <AppButton
+          title="login"
+          color={colors.primary}
+          onPress={() => navigation.navigate(routes.LOGIN)}
+        />
+        <AppButton
+          title="register"
+          color={colors.secondary}
+          onPress={() => navigation.navigate(routes.REGISTER)}
+        />
       </View>
 
       <StatusBar hidden />

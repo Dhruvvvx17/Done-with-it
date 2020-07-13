@@ -3,6 +3,7 @@ import { View, StyleSheet, Image } from "react-native";
 
 import colors from "../config/colors";
 import AppText from "./AppText";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 function Card({ title, subTitle, imageUrl, onPress }) {
   return (
