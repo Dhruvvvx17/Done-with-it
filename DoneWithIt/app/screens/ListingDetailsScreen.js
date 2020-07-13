@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { StatusBar } from "expo-status-bar";
-
+import { View, StyleSheet } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import ListItem from "../components/lists/ListItem";
@@ -13,7 +12,12 @@ function ListingDetailsScreen({ route }) {
   return (
     <View>
       {/* Product Image */}
-      <Image style={styles.image} source={listing.image} />
+      <Image
+        style={styles.image}
+        uri={listing.images[0].url}
+        preview={{ uri: listing.images[0].thumbnailUrl }}
+        tint="light"
+      />
 
       {/* Product Info - title & subtitle */}
       <View style={styles.detailsContainer}>
@@ -29,7 +33,6 @@ function ListingDetailsScreen({ route }) {
           />
         </View>
       </View>
-      <StatusBar hidden />
     </View>
   );
 }

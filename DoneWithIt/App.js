@@ -12,6 +12,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+import { AsyncStorage } from "react-native";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -25,6 +27,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import Screen from "./app/components/Screen";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 export default function App() {
   // return <WelcomeScreen />;
@@ -37,9 +40,12 @@ export default function App() {
   // return <RegisterScreen />;
   // return <ListingEditScreen />;
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </>
   );
 }
 
