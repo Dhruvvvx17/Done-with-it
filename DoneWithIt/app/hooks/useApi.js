@@ -12,7 +12,6 @@ export default useApi = (apiFunc) => {
     // trigger the loading indicator
     setLoading(true);
     const response = await apiFunc();
-    console.log(response);
     setLoading(false);
 
     if (!response.ok) {

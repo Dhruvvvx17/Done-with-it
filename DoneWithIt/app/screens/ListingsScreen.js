@@ -29,7 +29,9 @@ function listingScreens({ navigation }) {
     <Screen style={styles.screen}>
       {error && (
         <>
-          <AppText>Couldn't retrive the listings.</AppText>
+          <AppText style={{ alignSelf: "center" }}>
+            Couldn't retrive the listings.
+          </AppText>
           <AppButton title="Retry" onPress={loadListings}></AppButton>
         </>
       )}
@@ -52,8 +54,8 @@ function listingScreens({ navigation }) {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 20,
     backgroundColor: colors.light,
+    padding: 20,
   },
 });
 

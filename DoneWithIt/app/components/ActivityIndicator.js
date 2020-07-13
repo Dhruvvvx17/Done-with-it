@@ -10,6 +10,11 @@ function ActivityIndicator({ visible = false }) {
       source={require("../assets/animations/loader.json")}
       loop
       autoPlay
+      style={{
+        width: 300,
+        height: 300,
+        alignSelf: "center",
+      }}
     />
   );
 }
