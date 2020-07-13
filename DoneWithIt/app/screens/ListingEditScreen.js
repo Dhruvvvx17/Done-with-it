@@ -11,15 +11,12 @@ import {
   AppFormPicker,
   SubmitButton,
 } from "../components/forms";
-<<<<<<< HEAD
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
 import UploadScreen from "./UploadScreen";
 
 // importing api modules
 import listingsApi from "../api/listings";
-=======
->>>>>>> parent of c1ee2a3... Add Image selection for post. Add stack and tab navigators.
 
 const validationSchemas = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -101,11 +98,7 @@ function ListingEditScreen(props) {
           description: "",
           category: null,
         }}
-<<<<<<< HEAD
         onSubmit={handleSubmit}
-=======
-        onSubmit={(values) => console.log(values)}
->>>>>>> parent of c1ee2a3... Add Image selection for post. Add stack and tab navigators.
         validationSchema={validationSchemas}
       >
         <AppFormField maxLength={255} name="title" placeholder="Title" />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList } from "react-native";
-<<<<<<< HEAD
 
 // Custom components and files
 import Card from "../components/Card";
@@ -9,18 +8,12 @@ import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 import ActivityIndicator from "../components/ActivityIndicator";
 import useApi from "../hooks/useApi";
-=======
-import Screen from "../components/Screen";
-import Card from "../components/Card";
-import colors from "../config/colors";
->>>>>>> parent of c1ee2a3... Add Image selection for post. Add stack and tab navigators.
 
 // Api files
 import listingsApi from "../api/listings";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 
-<<<<<<< HEAD
 // Functional Component
 function listingScreens({ navigation }) {
   const { data: listings, error, loading, request: loadListings } = useApi(
@@ -32,9 +25,6 @@ function listingScreens({ navigation }) {
     loadListings();
   }, []);
 
-=======
-function listingScreens() {
->>>>>>> parent of c1ee2a3... Add Image selection for post. Add stack and tab navigators.
   return (
     <Screen style={styles.screen}>
       {error && (
@@ -51,12 +41,8 @@ function listingScreens() {
           <Card
             title={item.title}
             subTitle={"$" + item.price}
-<<<<<<< HEAD
             imageUrl={item.images[0].url}
             onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-=======
-            image={item.image}
->>>>>>> parent of c1ee2a3... Add Image selection for post. Add stack and tab navigators.
           />
         )}
       />
