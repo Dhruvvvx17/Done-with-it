@@ -1,58 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
-import Screen from "../components/Screen";
 import * as Yup from "yup";
+
+import {
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  ErrorMessage,
+} from "../components/forms";
+import Screen from "../components/Screen";
+import usersApi from "../api/users";
+import useAuth from "../auth/useAuth";
+import authApi from "../api/auth";
+import useApi from "../hooks/useApi";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(8).label("Password"),
+  password: Yup.string().required().min(5).label("Password"),
 });
 
 function RegisterScreen(props) {
+  // To indicate the loading
+  const resgisterApi = useApi(usersApi.register);
+  const loginApi = useApi(authApi.login);
+
+  const auth = useAuth();
+  const [error, setError] = useState();
+
+  const handleSubmit = async (userInfo) => {
+    const result = await resgisterApi.request(userInfo);
+
+    if (!result.ok) {
+      if (result.data) {
+        setError(result.data.error);
+      } else {
+        setError("An unexpected error occurred.");
+      }
+      console.log("!!!!", result);
+      return;
+    }
+
+    const { data: authToken } = await loginApi.request(
+      userInfo.email,
+      userInfo.password
+    );
+    // storing user data and token in persisten storage as well as in the react custom auth context
+    auth.logIn(authToken);
+  };
+
   return (
-    <Screen style={styles.conatiner}>
-      <AppForm
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
-        validationSchema={validationSchema}
-      >
-        {/* Custom field for name input*/}
-        <AppFormField
-          autoCorrect={false}
-          icon="account"
-          name="name"
-          placeholder="Name"
-          textContentType="name"
-        />
+    <>
+      <ActivityIndicator visible={resgisterApi.loading || loginApi.loading} />
+      <Screen style={styles.conatiner}>
+        <AppForm
+          initialValues={{ name: "", email: "", password: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          <ErrorMessage error={error} visible={error} />
+          {/* Custom field for name input*/}
+          <AppFormField
+            autoCorrect={false}
+            icon="account"
+            name="name"
+            placeholder="Name"
+          />
 
-        <AppFormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="email"
-          keyBoardType="email-address"
-          name="email"
-          placeholder="Email"
-          textContentType="emailAddress"
-        />
+          <AppFormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="email"
+            keyBoardType="email-address"
+            name="email"
+            placeholder="Email"
+            textContentType="emailAddress"
+          />
 
-        {/* Custom field for password input*/}
-        <AppFormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="lock"
-          name="password"
-          placeholder="Password"
-          secureTextEntry={true}
-          textContentType="password"
-        />
+          {/* Custom field for password input*/}
+          <AppFormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="lock"
+            name="password"
+            placeholder="Password"
+            secureTextEntry={true}
+            textContentType="password"
+          />
 
-        {/*Custom submit button */}
-        <SubmitButton title="Register" />
-      </AppForm>
-    </Screen>
+          {/*Custom submit button */}
+          <SubmitButton title="Register" />
+        </AppForm>
+      </Screen>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import * as Yup from "yup";
-import jwtDecode from "jwt-decode";
 
 import Screen from "../components/Screen";
 import {
@@ -11,7 +10,7 @@ import {
   ErrorMessage,
 } from "../components/forms";
 import authApi from "../api/auth";
-import AuthContext from "../auth/context";
+import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -20,7 +19,7 @@ const validationSchema = Yup.object().shape({
 
 function LoginScreen(props) {
   // using the authContext from app/auth/context
-  const authContext = useContext(AuthContext);
+  const { logIn } = useAuth();
   // state variables to keep check of login state
   const [loginFailed, setloginFailed] = useState(false);
 
@@ -33,8 +32,10 @@ function LoginScreen(props) {
 
     // if auth successful, set user in the auth context
     setloginFailed(false);
-    const userData = jwtDecode(result.data);
-    authContext.setUser(userData);
+
+    // setting the user details on persistent storage and react custom authcontext
+    // code for which is in useAuth() hook in auth folder
+    logIn(result.data);
   };
 
   return (

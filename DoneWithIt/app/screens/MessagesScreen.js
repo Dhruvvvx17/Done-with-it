@@ -55,10 +55,11 @@ function MessagesScreen(props) {
         onRefresh={() => {
           setMessages([
             {
-              id: 2,
-              title: "T2",
-              description: "D2",
-              image: require("../assets/mosh.jpg"),
+              id: 1,
+              title: "Hey! Is this item still available?",
+              description:
+                "Was looking for a guitar in the same price range that you have offered. Wanted to know if the item is still available and what is the lowest you would go on it.",
+              image: require("../assets/User.jpg"),
             },
           ]);
         }}

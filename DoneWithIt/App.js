@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,9 +11,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
-import { AsyncStorage } from "react-native";
+import { AppLoading } from "expo";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -30,6 +28,7 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/authStorage";
 
 export default function App() {
   // return <WelcomeScreen />;
@@ -43,6 +42,21 @@ export default function App() {
   // return <ListingEditScreen />;
 
   const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
+
+  // function to get the userAuth token from secure store
+  // (for the case where user has logged in and the app restarts, preserving user login details)
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
+  };
+
+  if (!isReady)
+    return (
+      // using the app loading module of expo to extend the splash screen time,
+      // until the appropriate UI view is ready
+      <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
+    );
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

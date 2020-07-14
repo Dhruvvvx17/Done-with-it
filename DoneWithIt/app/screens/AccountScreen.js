@@ -7,6 +7,7 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import ListItemSeparator from "../components/lists/ListItemSeparator";
 import routes from "../navigation/routes";
+import useAuth from "../auth/useAuth";
 
 const menuItems = [
   {
@@ -27,13 +28,21 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
+  const { user, logOut } = useAuth();
+
+  // On logout, remove user from authContext and secureStorage
+  // code for which is present in the useAuth hook in auth folder
+  const handleLogout = () => {
+    logOut();
+  };
+
   return (
     <Screen style={styles.screen}>
       {/* First container - Name, email and profile pic */}
       <View style={styles.conatiner}>
         <ListItem
-          title="Dhruv Vohra"
-          subTitle="dhruv.v405@gmail.com"
+          title={user.name}
+          subTitle={user.email}
           image={require("../assets/User.jpg")}
         />
       </View>
@@ -67,6 +76,7 @@ function AccountScreen({ navigation }) {
       <ListItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        onPress={handleLogout}
       />
     </Screen>
   );

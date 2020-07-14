@@ -8,19 +8,20 @@ export default useApi = (apiFunc) => {
 
   // An async function calling the getListings() API call.
   // Once data is recieved, state variable is updated
-  const request = async () => {
+  const request = async (...args) => {
     // trigger the loading indicator
     setLoading(true);
-    const response = await apiFunc();
+    const response = await apiFunc(...args);
     setLoading(false);
 
     if (!response.ok) {
       setError(true);
-      return;
+      return response;
     }
 
     setError(false);
     setData(response.data);
+    return response;
   };
 
   return { data, error, loading, request };
