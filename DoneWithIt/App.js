@@ -29,6 +29,7 @@ import OfflineNotice from "./app/components/OfflineNotice";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/authStorage";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
 export default function App() {
   // return <WelcomeScreen />;
@@ -61,8 +62,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
-      <NavigationContainer theme={navigationTheme}>
-        {/* <AppNavigator /> */}
+      <NavigationContainer theme={navigationTheme} ref={navigationRef}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>

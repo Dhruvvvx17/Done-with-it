@@ -8,7 +8,7 @@ export default useAuth = () => {
   const { user, setUser } = useContext(AuthContext);
 
   const logIn = (authToken) => {
-    console.log(authToken);
+    console.log("AuthToken-", authToken);
     const userData = jwtDecode(authToken);
 
     // set the global context state variable as user details
