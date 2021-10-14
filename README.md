@@ -23,10 +23,7 @@ This is a personal project in the React Native (Frontend) domain taken along wit
 <img src="https://user-images.githubusercontent.com/35966910/137264202-5aed22b4-0770-44c1-b5a2-ab02ad6815df.jpeg" alt="Listings" width=180>
   &nbsp;
 <img src="https://user-images.githubusercontent.com/35966910/137264401-7261d54f-03c1-4708-b2a6-14e293156836.jpeg" alt="Listing Info" width=180>
-</p>
-
-
-<p float="left">
+  &nbsp;
 <img src="https://user-images.githubusercontent.com/35966910/137265314-f737d043-03c5-4d59-bdb5-e6a4a976f341.jpeg" alt="Messaging" width=180>
   &nbsp;
 <img src="https://user-images.githubusercontent.com/35966910/137264476-fbcbd619-d042-40b6-8327-61b558dd8d91.jpeg" alt="Settings" width=180>
